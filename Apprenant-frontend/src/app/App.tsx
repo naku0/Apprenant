@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Playground from "../pages/Playground.tsx";
 import {ROUTES} from "../pages/Routes.ts";
 import CreateSession from "../pages/Session/CreateSession.tsx";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.tsx";
 
 const App = () => {
     const defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path={ROUTES.ROOT} element={<HomePage/>} />
                 <Route path={ROUTES.SESSION_CREATE} element={<CreateSession/>}/>
                 <Route path={ROUTES.PLAYGROUND} element={<Playground/>}/>
+                <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </div>
         </BrowserRouter>

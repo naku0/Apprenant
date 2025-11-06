@@ -28,6 +28,10 @@
     --color-text-primary: #282828;
     --color-text-secondary: #686868;
     --color-accent: #0048ff;
+
+    --color-link: #0048ff;
+    --color-link-hover: #0048ff;
+    --color-link-visited: #5f00ff;
 }
 
 :root[data-theme="dark"] {
@@ -39,6 +43,10 @@
     --color-text-primary: #ffffff;
     --color-text-secondary: #d6d6d6;
     --color-accent: #2d7dff;
+
+    --color-link: #4c7eff;
+    --color-link-hover: #80a4ff;
+    --color-link-visited: #8d4aff;
 }
 
 html, body, #root {
