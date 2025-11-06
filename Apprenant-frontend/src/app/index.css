@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+
+* {
+    transition: background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+    box-sizing: content-box;
+}
+
+:root {
+    font-family: system-ui, Inter, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="light"]{
+    --color-background: #f2f2f2;
+    --color-background-secondary: #e3e3e3;
+    --color-border: #a5a5a5;
+    --color-border-strong: #595959;
+    --color-primary: #7f7f7f;
+    --color-text-primary: #282828;
+    --color-text-secondary: #686868;
+    --color-accent: #0048ff;
+}
+
+:root[data-theme="dark"] {
+    --color-background: #1a1a1a;
+    --color-background-secondary: #2d2d2d;
+    --color-border: #404040;
+    --color-border-strong: #666666;
+    --color-primary: #888888;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #d6d6d6;
+    --color-accent: #2d7dff;
+}
+
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100svh;
+    width: 100%;
+    font-family: 'Inter', "Momo Trust Display", sans-serif;
+}

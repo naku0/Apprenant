@@ -1,0 +1,78 @@
+.button-component-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 10px;
+    transition: all 0.4s ease;
+    width: 70px;
+    height: auto;
+    min-height: 70px;
+    margin: 30px;
+    cursor: pointer;
+
+    svg{
+        width: 40px;
+        height: 40px;
+        opacity: 0.6;
+        fill: var(--color-text-secondary);
+        transition: opacity 0.3s ease;
+    }
+}
+
+.button-component-button-name{
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    white-space: pre-wrap;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* При наведении: сначала увеличиваем высоту, потом показываем текст */
+.button-component-container:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 100px; /* увеличиваем высоту контейнера */
+    transition:
+            min-height 0.3s ease 0s, /* без задержки */
+            transform 0.3s ease 0s,
+            box-shadow 0.3s ease 0s;
+
+    svg{
+        opacity: 1;
+    }
+
+    .button-component-button-name{
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        margin-top: 8px;
+        transition:
+                opacity 0.2s ease 0.2s, /* задержка 0.2s */
+                visibility 0.2s ease 0.2s,
+                margin-top 0.2s ease 0.2s;
+    }
+}
+
+.button-component-container:not(:hover) {
+    transition:
+            min-height 0.3s ease 0.2s,
+            transform 0.3s ease 0.2s,
+            box-shadow 0.3s ease 0.2s;
+
+    .button-component-button-name{
+        transition:
+                opacity 0.2s ease 0s, /* без задержки */
+                visibility 0.2s ease 0s,
+                margin-top 0.2s ease 0s;
+    }
+}

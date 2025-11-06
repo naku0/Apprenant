@@ -1,0 +1,39 @@
+.headerComponent{
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+}
+
+.header-app-name{
+    font-family: "Momo Trust Display", sans-serif;
+    font-size: 2rem;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.header-app-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    span{
+        padding: 10px;
+    }
+}
+
+.material-symbols-outlined{
+    fill: var(--color-text-primary);
+}
+
+.header-app-name:hover, .header-app-button:hover{
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    .material-symbols-outlined{
+        fill: var(--color-text-primary);
+        opacity: 0.5;
+    }
+}
+
