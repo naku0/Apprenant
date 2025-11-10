@@ -1,51 +1,34 @@
 package com.apprenant.actors
 
-import akka.actor.{Actor, ActorRef}
-import com.apprenant.dto.CursorPositionDto
-import com.apprenant.messages.*
-import com.apprenant.models.{Participant, Room}
+import akka.actor.{Actor, ActorRef, Props}
+import com.apprenant.actors.SessionActor
+import com.apprenant.messages.{ JoinRoom, CodeUpdate, CursorMove, LeaveRoom, BroadcastToRoom,
+  GetRoomState, GetSessionState, JoinSession, LeaveSession, UpdateCode, UpdateCursor}
+import com.apprenant.models.Room
 
-class RoomActor(room: Room) extends Actor{
-  private var participants: Map[String, Participant] = Map()
-  private var code: String = ""
-  private var language: String = "Java"
-  private var cursorPositions: Map[String, CursorPositionDto] = Map()
-  private var wss: Map[String, ActorRef] = Map()
+class RoomActor(room: Room) extends Actor {
+  private val sessionActor = context.actorOf(Props(new SessionActor(room)), "session")
+  private var websocketConnections: Map[String, ActorRef] = Map()
 
   def receive = {
-    case JoinRoom(participant, wsActor) => {
-      participants += (participant.id -> participant)
-      wss += (participant.id -> wsActor)
+    case JoinRoom(participant, wsActor) =>
+      websocketConnections += (participant.id -> wsActor)
+      sessionActor ! JoinSession(participant)
 
-      val state = RoomState(room, code, language, participants.values.toList, cursorPositions)
-      wsActor ! state
-      broadcast(UserJoined(participant, participants.values.toList))
-    }
-    
-    case CodeUpdate(newCode, participantId, _) => {
-      code = newCode 
-      broadcast(CodeChanged(newCode, participantId, System.currentTimeMillis()))
-    }
+    case CodeUpdate(newCode, participantId, timestamp) =>
+      sessionActor ! UpdateCode(newCode, participantId)
 
-    case CursorMove(position, participantId) => {
-      cursorPositions += (participantId -> position)
-      broadcast(CursorUpdated(position, participantId))
-    }
+    case CursorMove(position, participantId) =>
+      sessionActor ! UpdateCursor(position, participantId)
 
-    case GetRoomState =>{
-      val state = RoomState(room, code, language, participants.values.toList, cursorPositions)
-      sender() ! state
-    }
+    case LeaveRoom(participantId) =>
+      websocketConnections -= participantId
+      sessionActor ! LeaveSession(participantId)
 
-    case LeaveRoom(participantId) => {
-      participants -= participantId
-      cursorPositions -= participantId
-      wss -= participantId
-      broadcast(UserLeft(participantId, participants.values.toList))
-    }
-  }
+    case BroadcastToRoom(_, message) =>
+      websocketConnections.values.foreach(_ ! message)
 
-  private def broadcast(message: BroadcastMessage): Unit = {
-    wss.values.foreach(_ ! message)
+    case GetRoomState =>
+      sessionActor.forward(GetSessionState)
   }
 }

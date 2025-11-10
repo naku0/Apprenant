@@ -1,6 +1,6 @@
 export const ROUTES = {
     ROOT: "/",
-    PLAYGROUND: "/playground",
+    PLAYGROUND: "/room/:roomId",
 
     SESSION_CREATE: "/session/create",
 

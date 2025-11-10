@@ -3,6 +3,8 @@
     display: flex;
     position: fixed;
     top: 0;
+    box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.05);
+
 }
 
 .header-app-name{

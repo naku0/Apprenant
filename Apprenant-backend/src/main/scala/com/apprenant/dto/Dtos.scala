@@ -1,7 +1,7 @@
 package com.apprenant.dto
 
 case class CreateRoomRequest(roomName: String, hostName: String)
-case class CreateRoomResponse(roomId: String, joinUrl: String)
+case class CreateRoomResponse(roomId: String)
 
 case class JoinRoomRequest(userName: String)
 case class JoinRoomResponse(success: Boolean, room: RoomDto)

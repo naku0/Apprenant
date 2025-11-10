@@ -1,0 +1,149 @@
+.sessionPage-form-container{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-in-out forwards;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.4));
+}
+
+.sessionPage-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    background: var(--color-background);
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 16px;
+
+    span{
+        font-size: 1.25em;
+        padding: 0 5px;
+        transition: 0.5s transform,
+        0.3s background-color,
+        0.5s font-size ease-out;
+    }
+
+    .input-container{
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    input{
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px 10px 8px 10px;
+        font-size: 1em;
+        box-sizing: border-box;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        color: var(--color-text-primary);
+        background-color: var(--color-background);
+        font-family: "Raleway", sans-serif;
+        outline: none;
+        transition: border-color 0.3s ease,
+                    0.3s background-color;
+    }
+
+    input:invalid,
+    input.input-error {
+        border-color: var(--error-color);
+    }
+
+    .input-label{
+        position: absolute;
+        top: 55%;
+        left: 5px;
+        height: 25px;
+        transform: translateY(-50%);
+        color: var(--color-text-secondary);
+        font-size: 1em;
+        transition: 0.5s transform ease-out;
+        pointer-events: none;
+    }
+
+    input:invalid + .input-label,
+    input.input-error + .input-label {
+        color: var(--error-color);
+    }
+
+    .input-example{
+        transition: 0.5s opacity;
+        position: absolute;
+        top: 55%;
+        left: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 1em;
+        color: var(--color-text-secondary);
+        opacity: 0;
+    }
+
+    .alert-message {
+        color: var(--error-color);
+        font-size: 0.8em;
+        padding: 0 5px;
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.sessionPage-button-container{
+    display: flex;
+    justify-content: flex-end;
+
+    button{
+        color: var(--color-text-primary);
+        background-color: var(--color-background);
+        border: 1px solid var(--color-border-strong);
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-family: "Momo Trust Display", sans-serif;
+        margin-top: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.sessionPage-button-container > button:hover:not(:disabled){
+    cursor: pointer;
+    background-color: var(--color-background-secondary);
+}
+
+.input-container > input:focus{
+    border: 1px solid var(--color-accent);
+}
+
+.input-container > input:focus + .input-label,
+.input-container > input:not(:placeholder-shown) + .input-label{
+    transform: translateY(-35px);
+
+    span{
+        font-size: 0.75em;
+    }
+}
+
+.input-container > input:focus + .input-label + .input-example{
+    opacity: 1;
+}
+
+.input-container > input:not(:placeholder-shown) + .input-label + .input-example {
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

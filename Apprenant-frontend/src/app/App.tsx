@@ -1,13 +1,14 @@
 import useLocalStorage from "../hooks/useLocalStorage.ts";
 import {useEffect} from "react";
 import "./App.css";
-import HeaderComponent from "../components/ui/headerComponent/HeaderComponent.tsx";
+import HeaderComponent from "../components/ui/molecules/headerComponent/HeaderComponent.tsx";
 import HomePage from "../pages/HomePage/HomePage.tsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Playground from "../pages/Playground.tsx";
+import Playground from "../pages/PlaygroundPage/PlaygroundPage.tsx";
 import {ROUTES} from "../pages/Routes.ts";
-import CreateSession from "../pages/Session/CreateSession.tsx";
+import CreateSessionPage from "../pages/Session/CreateSessionPage.tsx";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.tsx";
+import FooterComponent from "../components/ui/molecules/footerComponent/FooterComponent.tsx";
 
 const App = () => {
     const defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -27,10 +28,11 @@ const App = () => {
             <HeaderComponent func={changeTheme} theme={theme}/>
             <Routes>
                 <Route path={ROUTES.ROOT} element={<HomePage/>} />
-                <Route path={ROUTES.SESSION_CREATE} element={<CreateSession/>}/>
+                <Route path={ROUTES.SESSION_CREATE} element={<CreateSessionPage/>}/>
                 <Route path={ROUTES.PLAYGROUND} element={<Playground/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
+            <FooterComponent/>
         </div>
         </BrowserRouter>
 

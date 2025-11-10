@@ -1,5 +1,7 @@
 package com.apprenant.models
 
+import com.apprenant.dto.CursorPositionDto
+
 case class Participant(id: String, name: String)
 
 case class Room(roomId: String, roomName: String)

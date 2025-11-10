@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-background-secondary);
-    border: 1px solid var(--color-border);
     border-radius: 15px;
     padding: 10px;
     transition: all 0.4s ease;
@@ -13,6 +12,7 @@
     min-height: 70px;
     margin: 30px;
     cursor: pointer;
+    border: 1px solid var(--color-border);
 
     svg{
         width: 40px;
@@ -37,13 +37,12 @@
     margin-top: 0;
 }
 
-/* При наведении: сначала увеличиваем высоту, потом показываем текст */
 .button-component-container:hover{
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-height: 100px; /* увеличиваем высоту контейнера */
+    min-height: 100px;
     transition:
-            min-height 0.3s ease 0s, /* без задержки */
+            min-height 0.3s ease 0s,
             transform 0.3s ease 0s,
             box-shadow 0.3s ease 0s;
 

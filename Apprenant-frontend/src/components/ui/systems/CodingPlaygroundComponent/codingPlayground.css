@@ -1,0 +1,71 @@
+.playground-wrapper {
+    width: 70svw;
+    height: 60svh;
+    background: var(--color-background-secondary);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+
+}
+
+.playground-code-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-background-secondary);
+    padding: 20px;
+}
+
+.playground-code-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 30px;
+    background: var(--color-background);
+    border-radius: 0 0 12px 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.playground-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.playground-selector {
+    appearance: none;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: 12px 0 12px 0;
+    outline: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    width: 140px;
+    height:30px;
+    padding: 8px 12px;
+}
+
+.playground-selector option {
+    color: var(--color-text-secondary);
+    font-size: 0.75em;
+
+}
+
+.playground-code-block{
+    display: flex;
+    align-items: center;
+}
+
+.playground-selector:hover {
+    background: var(--color-background-secondary);
+    cursor: pointer;
+}
